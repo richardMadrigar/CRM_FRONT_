@@ -1,22 +1,20 @@
-import { Box, Typography, Grid, Divider, Chip } from "@mui/material";
-import { CardCore } from "src/Pages/components/CardCore/CardCore";
 import {
   Business,
-  LocationOn,
-  Language,
-  Instagram,
-  Phone,
-  Email,
   CalendarToday,
   Description,
-  Work,
+  Email,
+  Instagram,
+  Language,
+  LocationOn,
+  Phone,
 } from "@mui/icons-material";
-import { IListContacts, IStatusLeads } from "src/Contexts/Contacts/ContextContactsTypes";
+import { Box, Divider, Grid, Typography } from "@mui/material";
+import type {
+  IListContacts,
+} from "src/Contexts/Contacts/ContextContactsTypes";
+import { CardCore } from "src/Pages/components/CardCore/CardCore";
 import {
-  OBjLeadsInterestLevel,
   objLeadsSourceCollection,
-  objLeadsStatus,
-  objLeadsTypeCompany,
 } from "src/Pages/components/ObjTransform";
 import { FormatDateBR } from "src/shared/Utils/FormatDateBR";
 
@@ -30,35 +28,8 @@ interface ContactDetailsProps {
 }
 
 export const ContactDetails = ({ contactData }: ContactDetailsProps) => {
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case "NEGOTIATION":
-        return "#FF9800";
-      case "PROPOSAL_SENT":
-        return "#2196F3";
-      case "PROPOSAL_ACCEPTED":
-        return "#4CAF50";
-      case "DISQUALIFIED_CLOSED":
-        return "#F44336";
-      default:
-        return "#9E9E9E";
-    }
-  };
 
-  const getStatusText = (status: IStatusLeads) => {
-    switch (status) {
-      case "NEGOTIATION":
-        return "Em Negociação";
-      case "PROPOSAL_SENT":
-        return "Proposta Enviada";
-      case "PROPOSAL_ACCEPTED":
-        return "Proposta Aceita";
-      case "DISQUALIFIED_CLOSED":
-        return "Desqualificado";
-      default:
-        return objLeadsStatus[status] || status;
-    }
-  };
+
 
   return (
     <CardCore sxStyle={{ margin: "0", padding: "24px" }}>
@@ -126,36 +97,7 @@ export const ContactDetails = ({ contactData }: ContactDetailsProps) => {
             )}
           </Box>
 
-          <Box sx={{ mb: "16px" }}>
-            <Typography variant="body2" sx={{ fontWeight: 500, mb: "4px" }}>
-              Status:
-            </Typography>
-            <Chip
-              label={getStatusText(contactData.status)}
-              size="small"
-              sx={{
-                backgroundColor: getStatusColor(contactData.status),
-                color: "white",
-                fontWeight: 500,
-              }}
-            />
-          </Box>
 
-          <Box sx={{ mb: "16px" }}>
-            <Typography variant="body2" sx={{ fontWeight: 500, mb: "4px" }}>
-              Nível de Interesse:
-            </Typography>
-            <Chip
-              label={OBjLeadsInterestLevel[contactData.interestLevel].title}
-              size="small"
-              sx={{
-                backgroundColor:
-                  OBjLeadsInterestLevel[contactData.interestLevel].color,
-                color: "white",
-                fontWeight: 500,
-              }}
-            />
-          </Box>
         </Grid>
 
         {/* Informações da Empresa */}
@@ -166,15 +108,6 @@ export const ContactDetails = ({ contactData }: ContactDetailsProps) => {
           >
             Informações da Empresa
           </Typography>
-
-          <Box sx={{ mb: "16px" }}>
-            <Typography variant="body2" sx={{ fontWeight: 500, mb: "4px" }}>
-              Tipo de Empresa:
-            </Typography>
-            <Typography variant="body1">
-              {objLeadsTypeCompany[contactData.typeCompany] || "-"}
-            </Typography>
-          </Box>
 
           {contactData.cnpj && (
             <Box sx={{ mb: "16px" }}>

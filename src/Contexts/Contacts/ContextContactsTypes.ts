@@ -1,5 +1,5 @@
-import { SetStateAction as Action, Dispatch as DPatch } from "react";
-import { ISourceCollectionLeads } from "src/Pages/components/ObjTransform";
+import type { SetStateAction as Action, Dispatch as DPatch } from "react";
+import type { ISourceCollectionLeads } from "src/Pages/components/ObjTransform";
 
 export type IContextContacts = {
   setListContacts: DPatch<Action<IListContacts[]>>;
@@ -37,9 +37,6 @@ export interface IListContacts {
   description: string;
   cnpj: string;
   cpf: string;
-  typeCompany: ITypeCompany;
-  status: IStatusLeads;
-  interestLevel: IInterestLevelLeads;
   sourceCollection: ISourceCollectionLeads;
   startRegisterAt: string | undefined;
   companySize: string | undefined;
@@ -65,20 +62,6 @@ export interface IListContacts {
   createdAt: string;
 }
 
-export type IInterestLevelLeads = "LOW" | "MEDIUM" | "HIGH";
-
-export type IStatusLeads =
-  | "NEW"
-  | "IN_CONTACT"
-  | "NEGOTIATION"
-  | "PROPOSAL_SENT"
-  | "PROPOSAL_ACCEPTED"
-  | "PROPOSAL_REJECTED"
-  | "FUTURE_NEGOTIATION"
-  | "DISQUALIFIED_CLOSED"
-  | "LOST";
-
-export type ITypeCompany = "PJ" | "PF" | "NONE";
 
 export interface ICreateContacts {
   name: string;
@@ -89,18 +72,10 @@ export interface ICreateContacts {
   cpf: string;
   cnpj: string;
 
-  interestLevel: IInterestLevelLeads;
-  status: IStatusLeads;
   sourceCollection: string;
 
   dateCapture: string | undefined;
-  typeCompany: ITypeCompany;
   description: string | undefined;
-  companySize: string | undefined;
-  reasonLoss: string | undefined;
-  foundedAt: string | undefined;
-  website: string | undefined;
-  instagram: string | undefined;
   state: string | undefined;
   city: string | undefined;
   street: string | undefined;

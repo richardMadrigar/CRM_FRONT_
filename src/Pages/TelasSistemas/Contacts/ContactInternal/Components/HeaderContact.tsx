@@ -1,7 +1,7 @@
-import { Box, Typography, Chip, LinearProgress, Grid } from "@mui/material";
+import { Diamond, Email, LocationOn, Person, Phone } from "@mui/icons-material";
+import { Box, Chip, Grid, LinearProgress, Typography } from "@mui/material";
+import type { IListContacts } from "src/Contexts/Contacts/ContextContactsTypes";
 import { CardCore } from "src/Pages/components/CardCore/CardCore";
-import { Person, Email, Phone, LocationOn, Diamond } from "@mui/icons-material";
-import { IListContacts } from "src/Contexts/Contacts/ContextContactsTypes";
 
 interface ContactDataWithExtras extends IListContacts {
   score: number;
@@ -14,36 +14,6 @@ interface HeaderContactProps {
 }
 
 export const HeaderContact = ({ contactData }: HeaderContactProps) => {
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case "NEGOTIATION":
-        return "#FF9800";
-      case "PROPOSAL_SENT":
-        return "#2196F3";
-      case "PROPOSAL_ACCEPTED":
-        return "#4CAF50";
-      case "DISQUALIFIED_CLOSED":
-        return "#F44336";
-      default:
-        return "#9E9E9E";
-    }
-  };
-
-  const getStatusText = (status: string) => {
-    switch (status) {
-      case "NEGOTIATION":
-        return "Em Negociação";
-      case "PROPOSAL_SENT":
-        return "Proposta Enviada";
-      case "PROPOSAL_ACCEPTED":
-        return "Proposta Aceita";
-      case "DISQUALIFIED_CLOSED":
-        return "Desqualificado";
-      default:
-        return "Novo";
-    }
-  };
-
   const getTagIcon = (tag: string) => {
     switch (tag) {
       case "Premium":
@@ -62,22 +32,6 @@ export const HeaderContact = ({ contactData }: HeaderContactProps) => {
         <Typography variant="h6" sx={{ fontWeight: 600 }}>
           Informações do Lead
         </Typography>
-      </Box>
-
-      <Box sx={{ mb: "16px" }}>
-        <Typography variant="h5" sx={{ fontWeight: 600, mb: "8px" }}>
-          {contactData.name}
-        </Typography>
-
-        <Chip
-          label={getStatusText(contactData.status)}
-          size="small"
-          sx={{
-            backgroundColor: getStatusColor(contactData.status),
-            color: "white",
-            fontWeight: 500,
-          }}
-        />
       </Box>
 
       <Box sx={{ mb: "16px" }}>
@@ -139,9 +93,9 @@ export const HeaderContact = ({ contactData }: HeaderContactProps) => {
           Tags:
         </Typography>
         <Box sx={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-          {contactData.tags.map((tag, index) => (
+          {contactData.tags.map((tag) => (
             <Chip
-              key={index}
+              key={tag}
               label={tag}
               size="small"
               icon={getTagIcon(tag)}

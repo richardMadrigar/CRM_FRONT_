@@ -1,16 +1,15 @@
 import { Grid } from "@mui/material";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import type { IListContacts } from "src/Contexts/Contacts/ContextContactsTypes";
 import {
-  HeaderContact,
-  EngagementMetrics,
   ActivitySummary,
-  EngagementTimeline,
   CampaignHistory,
   ContactDetails,
+  EngagementMetrics,
+  EngagementTimeline,
+  HeaderContact,
 } from "./Components";
-import { useParams } from "react-router";
-import { useContextContacts } from "src/Contexts/Contacts/ContextContacts";
-import { useEffect, useState } from "react";
-import { IListContacts } from "src/Contexts/Contacts/ContextContactsTypes";
 
 interface ContactDataWithExtras extends IListContacts {
   score: number;
@@ -50,9 +49,6 @@ const mockContactData: ContactDataWithExtras = {
   description: "Lead qualificado interessado em nossos serviços",
   cnpj: "12.345.678/0001-90",
   cpf: "123.456.789-00",
-  typeCompany: "PJ" as const,
-  status: "NEGOTIATION" as const,
-  interestLevel: "HIGH" as const,
   sourceCollection: "FORM" as const,
   startRegisterAt: "2024-01-15",
   companySize: "Pequena (1-10 funcionários)",
@@ -111,7 +107,6 @@ const mockContactData: ContactDataWithExtras = {
 
 export const ContactInternal = () => {
   const { id } = useParams();
-  const { listContacts } = useContextContacts();
   const [contactData, setContactData] =
     useState<ContactDataWithExtras>(mockContactData);
 
