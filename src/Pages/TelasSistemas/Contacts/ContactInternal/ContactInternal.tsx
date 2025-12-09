@@ -72,6 +72,7 @@ const mockContactData: ContactDataWithExtras = {
   dateCapture: "2024-01-20",
   updatedAt: "2024-01-25T10:30:00Z",
   createdAt: "2024-01-20T14:15:00Z",
+  country: "Brasil",
   // Dados adicionais para a tela interna
   score: 85,
   source: "Website",

@@ -1,7 +1,8 @@
-import { ICreateEmailTemplate } from "../EmailTemplatesContextTypes";
+import type { ICreateEmailTemplate } from "../EmailTemplatesContextTypes";
 
 export const valuesDefaultInputsEmailTemplate: ICreateEmailTemplate = {
-	name: "",
-	htmlContent: "",
-	description: "",
+  name: "",
+  htmlContent: "",
+  description: "",
+  message: "",
 };

@@ -35,8 +35,7 @@ export const FormCreateContacts = () => {
       >
         <Tab label="Dados Básicos" value="1" />
         <Tab label="Endereço" value="2" />
-        <Tab label="Redes Sociais" value="3" />
-        <Tab label="JSON" value="4" />
+        <Tab label="JSON" value="3" />
       </Tabs>
 
       <TabPanel
@@ -86,16 +85,6 @@ export const FormCreateContacts = () => {
               onChange={handleChange("phone2")}
             />
           </Grid>
-          <Grid item xs={4}>
-            <AppTextField
-              label="Número do contato 3"
-              fullWidth
-              placeholder="(11) 99999-9999"
-              value={valuesInputsContacts?.phone3}
-              onChange={handleChange("phone3")}
-            />
-          </Grid>
-
           <Grid item xs={12} md={4}>
             <AppTextField
               fullWidth
@@ -211,11 +200,20 @@ export const FormCreateContacts = () => {
               onChange={handleChange("zipCode")}
             />
           </Grid>
+          <Grid item xs={6}>
+            <AppTextField
+              label="País"
+              fullWidth
+              placeholder="País"
+              value={valuesInputsContacts?.country}
+              onChange={handleChange("country")}
+            />
+          </Grid>
         </Grid>
       </TabPanel>
 
       <TabPanel
-        value="4"
+        value="3"
         sx={{
           border: "1px solid #84848437",
           borderRadius: "10px",

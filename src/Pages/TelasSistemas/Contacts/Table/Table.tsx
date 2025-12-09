@@ -59,6 +59,7 @@ export const TableContacts = () => {
       cpf: cpfOurCnpj({ text: item.cpf || "", type: "cpf" }),
       cnpj: cpfOurCnpj({ text: item.cnpj || "", type: "cnpj" }),
       dateCapture: handleFormatDateIfIsNull(item.dateCapture),
+      country: item.country || "",
     });
   };
 

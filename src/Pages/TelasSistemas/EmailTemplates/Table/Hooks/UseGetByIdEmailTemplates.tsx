@@ -3,24 +3,25 @@ import { useLayoutMainContext } from "src/Contexts/MainLayoutContext";
 import { api } from "src/shared/setup/API/api";
 
 export const UseGetByIdEmailTemplates = () => {
-	const { handleGetAlert } = useLayoutMainContext();
+  const { handleGetAlert } = useLayoutMainContext();
 
-	const { setValuesInputsEmailTemplate } = useContextEmailTemplates();
+  const { setValuesInputsEmailTemplate } = useContextEmailTemplates();
 
-	const handleGetById = async (id: string) => {
-		await api
-			.get(`/templates-emails/${id}`)
-			.then(({ data }) => {
-				setValuesInputsEmailTemplate({
-					name: data.name,
-					htmlContent: data.htmlContent,
-					description: data.description,
-				});
-			})
-			.catch((error) =>
-				handleGetAlert({ message: error.response.data.message }),
-			);
-	};
+  const handleGetById = async (id: string) => {
+    await api
+      .get(`/templates-emails/${id}`)
+      .then(({ data }) => {
+        setValuesInputsEmailTemplate({
+          name: data.name,
+          htmlContent: data.htmlContent,
+          description: data.description,
+          message: data.message,
+        });
+      })
+      .catch((error) =>
+        handleGetAlert({ message: error.response.data.message }),
+      );
+  };
 
-	return { handleGetById };
+  return { handleGetById };
 };

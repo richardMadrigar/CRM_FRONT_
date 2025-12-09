@@ -5,74 +5,75 @@ import { useLayoutMainContext } from "src/Contexts/MainLayoutContext";
 import { api } from "src/shared/setup/API/api";
 
 interface IUseFormEmailTemplates {
-	setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const UseFormEmailTemplates = ({
-	setOpenModal,
+  setOpenModal,
 }: IUseFormEmailTemplates) => {
-	const { setAttTable, attTable, id } = useConfigPageContext();
-	const { valuesInputsEmailTemplate } = useContextEmailTemplates();
-	const { handleGetAlert } = useLayoutMainContext();
+  const { setAttTable, attTable, id } = useConfigPageContext();
+  const { valuesInputsEmailTemplate } = useContextEmailTemplates();
+  const { handleGetAlert } = useLayoutMainContext();
 
-	const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-	const AllDatas = {
-		name: valuesInputsEmailTemplate.name,
-		htmlContent: valuesInputsEmailTemplate.htmlContent,
-		description: valuesInputsEmailTemplate.description,
-	};
+  const AllDatas = {
+    name: valuesInputsEmailTemplate.name,
+    htmlContent: valuesInputsEmailTemplate.htmlContent,
+    description: valuesInputsEmailTemplate.description,
+    message: valuesInputsEmailTemplate.message,
+  };
 
-	const handleCreate = async () => {
-		if (!AllDatas.name) return handleGetAlert({ message: `Digite um nome !` });
+  const handleCreate = async () => {
+    if (!AllDatas.name) return handleGetAlert({ message: `Digite um nome !` });
 
-		if (!AllDatas.htmlContent)
-			return handleGetAlert({ message: `Digite o HTML do template !` });
+    if (!AllDatas.htmlContent || !AllDatas.message)
+      return handleGetAlert({ message: `Digite o HTML do template ou mensagem de SMS !` });
 
-		setLoading(true);
+    setLoading(true);
 
-		return api
-			.post("/templates-emails", AllDatas)
-			.then((res) => {
-				handleGetAlert({ message: res.data.message });
-				setAttTable(!attTable);
-				setOpenModal(false);
-			})
-			.catch((error) =>
-				handleGetAlert({ message: error.response.data.message }),
-			)
-			.finally(() => setLoading(false));
-	};
+    return api
+      .post("/templates-emails", AllDatas)
+      .then((res) => {
+        handleGetAlert({ message: res.data.message });
+        setAttTable(!attTable);
+        setOpenModal(false);
+      })
+      .catch((error) =>
+        handleGetAlert({ message: error.response.data.message }),
+      )
+      .finally(() => setLoading(false));
+  };
 
-	const handleEdit = () => {
-		if (!AllDatas.name)
-			return handleGetAlert({ message: `Digite um título !` });
+  const handleEdit = () => {
+    if (!AllDatas.name)
+      return handleGetAlert({ message: `Digite um título !` });
 
-		if (!AllDatas.htmlContent)
-			return handleGetAlert({ message: `Digite o HTML do template !` });
+    if (!AllDatas.htmlContent || !AllDatas.message)
+      return handleGetAlert({ message: `Digite o HTML do template ou mensagem de SMS !` });
 
-		setLoading(true);
+    setLoading(true);
 
-		return api
-			.put(`/templates-emails/${id}`, AllDatas)
-			.then((res) => {
-				handleGetAlert({ message: res.data.message });
-				setAttTable(!attTable);
-				setOpenModal(false);
-			})
-			.catch((error) =>
-				handleGetAlert({ message: error.response.data.message }),
-			)
-			.finally(() => setLoading(false));
-	};
+    return api
+      .put(`/templates-emails/${id}`, AllDatas)
+      .then((res) => {
+        handleGetAlert({ message: res.data.message });
+        setAttTable(!attTable);
+        setOpenModal(false);
+      })
+      .catch((error) =>
+        handleGetAlert({ message: error.response.data.message }),
+      )
+      .finally(() => setLoading(false));
+  };
 
-	const handleSubmit = () => {
-		if (id) {
-			handleEdit();
-		} else {
-			handleCreate();
-		}
-	};
+  const handleSubmit = () => {
+    if (id) {
+      handleEdit();
+    } else {
+      handleCreate();
+    }
+  };
 
-	return { handleSubmit, loading };
+  return { handleSubmit, loading };
 };

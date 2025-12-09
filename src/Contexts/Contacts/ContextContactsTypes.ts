@@ -47,6 +47,7 @@ export interface IListContacts {
   phone1: string;
   phone2: string | undefined;
   phone3: string | undefined;
+  country: string | undefined;
   state: string | undefined;
   city: string | undefined;
   neighborhood: string | undefined;
@@ -81,5 +82,6 @@ export interface ICreateContacts {
   street: string | undefined;
   number: string | undefined;
   zipCode: string | undefined;
+  country: string | undefined;
   data: string | undefined;
 }

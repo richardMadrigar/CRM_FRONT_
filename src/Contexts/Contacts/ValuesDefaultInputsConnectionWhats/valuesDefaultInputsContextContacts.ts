@@ -18,4 +18,5 @@ export const valuesDefaultInputsContacts: ICreateContacts = {
   number: "",
   zipCode: "",
   data: "", /// json,
+  country: "",
 };
