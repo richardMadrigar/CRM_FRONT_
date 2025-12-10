@@ -224,7 +224,7 @@ export const TableCampaign = () => {
             }
           };
 
-          const totalRequest = item.statusCount.request || 0;
+          const totalRequest = item.totalSent || 0;
           const totalDelivered = item.statusCount.DELIVERY || 0;
           const totalOpened = item.statusCount.OPEN || 0;
           const totalClicks = item.statusCount.CLICK || 0;
@@ -351,18 +351,18 @@ export const TableCampaign = () => {
                       tooltipTitle="Total de emails tentando ser enviados"
                     />
                     <CompCardMetricsTableCampaign
-                      title="Abertos"
-                      description={totalOpened}
-                      background="#c587c548"
-                      color="#e05ce0ff"
-                      tooltipTitle="Total de emails abertos"
-                    />
-                    <CompCardMetricsTableCampaign
                       title="Entregues"
                       description={`${totalDelivered} (${percentDeliverabilityRate}%)`}
                       background="#c587c548"
                       color="#e05ce0ff"
                       tooltipTitle="Total de emails entregues / Capacidade de entrega (capacidade de entrega é a porcentagem de emails entregues em relação aos emails tentando ser enviados)"
+                    />
+                    <CompCardMetricsTableCampaign
+                      title="Abertos"
+                      description={totalOpened}
+                      background="#c587c548"
+                      color="#e05ce0ff"
+                      tooltipTitle="Total de emails abertos"
                     />
                     <CompCardMetricsTableCampaign
                       title="Clicados"

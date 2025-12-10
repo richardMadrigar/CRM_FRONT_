@@ -277,6 +277,7 @@ export type IListCampaign = {
   subject: string;
   senderName: string;
   senderEmail: string;
+  totalSent: number;
 
   updatedAt: string;
   createdAt: string;
