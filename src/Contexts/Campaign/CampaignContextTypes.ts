@@ -300,16 +300,16 @@ export type IListCampaign = {
     // };
   };
   statusCount: {
-    opened: number
-    soft_bounce: number
+    OPEN: number
+    SPAM_COMPLAINT: number
     deferred: number
     request: number
-    click: number
+    CLICK: number
     unique_proxy_open: number
-    hard_bounce: number
+    BOUNCE: number
     unsubscribed: number
     spam: number
-    delivered: number
+    DELIVERY: number
     proxy_open: number
     blocked: number
     unique_opened: number
@@ -325,5 +325,6 @@ export type IListCampaign = {
     blockedRate: number
     deferredRate: number
     proxyOpenRate: number
+    SPAM_COMPLAINT: number
   };
 };

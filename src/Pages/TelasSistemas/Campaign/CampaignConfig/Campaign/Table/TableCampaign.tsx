@@ -49,7 +49,7 @@ export const CompCardMetricsTableCampaign = ({
   return (
     <Grid
       item
-      sm={2}
+      sm={1.5}
       sx={{
         background,
         borderRadius: 2,
@@ -61,6 +61,7 @@ export const CompCardMetricsTableCampaign = ({
         justifyContent: "space-between",
         alignItems: "center",
         gap: 1,
+
       }}
     >
       <Box>
@@ -224,25 +225,25 @@ export const TableCampaign = () => {
           };
 
           const totalRequest = item.statusCount.request || 0;
-          const totalDelivered = item.statusCount.delivered || 0;
-          // const totalOpened = item.statusCount.unique_opened;
-          const totalClicks = item.statusCount.click || 0;
-          const totalUniqueOpened = item.statusCount.unique_opened || 0;
+          const totalDelivered = item.statusCount.DELIVERY || 0;
+          const totalOpened = item.statusCount.OPEN;
+          const totalClicks = item.statusCount.CLICK || 0;
+          const totalUniqueOpened = item.statusCount.CLICK || 0;
           // const totalUniqueProxyOpen = item.statusCount.unique_proxy_open;
-          const totalHardBounce = item.statusCount.hard_bounce || 0;
+          const totalHardBounce = item.statusCount.BOUNCE || 0;
           // const totalSoftBounce = item.statusCount.soft_bounce;
           // const totalBlocked = item.statusCount.blocked;
           // const totalDeferred = item.statusCount.deferred;
           // const totalProxyOpen = item.statusCount.proxy_open;
           // const totalUnsubscribed = item.statusCount.unsubscribed;
-          const totalSpam = item.statusCount.spam || 0;
+          const totalSpam = item.statusCount.SPAM_COMPLAINT || 0;
 
           const percentDeliverabilityRate = item.metrics.deliverabilityRate || 0 // Capacidade de entrega
           const percentOpenRate = item.metrics.openRate || 0  // taxa de abertura
           const percentClickRate = item.metrics.clickRate || 0 // taxa de cliques
           // const percentUnsubscribeRate = item.metrics.unsubscribeRate // taxa de cancelamento
           const percentSpamReportRate = item.metrics.spamReportRate || 0 // taxa de spam
-          const percentHardBounceRate = item.metrics.hardBounceRate || 0 // taxa de hard bounce
+          const percentHardBounceRate = item.metrics.SPAM_COMPLAINT || 0 // taxa de hard bounce
           // const percentSoftBounceRate = item.metrics.softBounceRate // taxa de soft bounce
           // const percentBlockedRate = item.metrics.blockedRate // taxa de bloqueio
           // const percentDeferredRate = item.metrics.deferredRate // taxa de deferral
@@ -350,6 +351,13 @@ export const TableCampaign = () => {
                       tooltipTitle="Total de emails tentando ser enviados"
                     />
                     <CompCardMetricsTableCampaign
+                      title="Abertos"
+                      description={totalOpened}
+                      background="#c587c548"
+                      color="#e05ce0ff"
+                      tooltipTitle="Total de emails abertos"
+                    />
+                    <CompCardMetricsTableCampaign
                       title="Entregues"
                       description={`${totalDelivered} (${percentDeliverabilityRate}%)`}
                       background="#c587c548"
@@ -357,7 +365,7 @@ export const TableCampaign = () => {
                       tooltipTitle="Total de emails entregues / Capacidade de entrega (capacidade de entrega é a porcentagem de emails entregues em relação aos emails tentando ser enviados)"
                     />
                     <CompCardMetricsTableCampaign
-                      title="Abertos (1 vez)"
+                      title="Clicados"
                       description={`${totalUniqueOpened} (${percentOpenRate}%)`}
                       background="#6d86f352"
                       color="#516ce0ff"
