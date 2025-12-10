@@ -226,7 +226,7 @@ export const TableCampaign = () => {
 
           const totalRequest = item.statusCount.request || 0;
           const totalDelivered = item.statusCount.DELIVERY || 0;
-          const totalOpened = item.statusCount.OPEN;
+          const totalOpened = item.statusCount.OPEN || 0;
           const totalClicks = item.statusCount.CLICK || 0;
           const totalUniqueOpened = item.statusCount.CLICK || 0;
           // const totalUniqueProxyOpen = item.statusCount.unique_proxy_open;
