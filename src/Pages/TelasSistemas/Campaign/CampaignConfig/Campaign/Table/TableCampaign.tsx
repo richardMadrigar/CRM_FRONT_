@@ -49,7 +49,7 @@ export const CompCardMetricsTableCampaign = ({
   return (
     <Grid
       item
-      sm={1.5}
+      sm={1.8}
       sx={{
         background,
         borderRadius: 2,
@@ -61,7 +61,6 @@ export const CompCardMetricsTableCampaign = ({
         justifyContent: "space-between",
         alignItems: "center",
         gap: 1,
-
       }}
     >
       <Box>
@@ -380,7 +379,7 @@ export const TableCampaign = () => {
                     />
 
                     <CompCardMetricsTableCampaign
-                      title="hard bounce"
+                      title="Invalido - Bounce"
                       description={`${totalHardBounce} (${percentHardBounceRate}%)`}
                       background="#F3A96D52"
                       color="#516ce0ff"
