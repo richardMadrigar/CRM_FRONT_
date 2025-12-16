@@ -8,6 +8,7 @@ import { AppTextField } from "src/Pages/components";
 import { CardCore } from "src/Pages/components/CardCore/CardCore";
 
 interface TabItem {
+  icon?: React.ReactNode;
   label: string;
   value: string;
 }
@@ -66,6 +67,7 @@ export const CustomTabs: React.FC<CustomTabsProps> = ({
               isSelected={currentValue === tab.value}
               onClick={(e) => onChange(e, tab.value)}
             >
+              {tab.icon}
               {tab.label}
             </TabButton>
           </Grid>
@@ -89,7 +91,7 @@ export const FormDados = ({ inputRef }: IFormDados) => {
 
   const handleChangeMainTab = (_event: React.SyntheticEvent, newValue: string) => {
     setMainTab(newValue);
-    setValuesInputsEmailTemplate((eventPrev) => ({
+    setValuesInputsEmailTemplate((eventPrev: ICreateEmailTemplate) => ({
       ...eventPrev,
       type: newValue === "email" ? "EMAIL" : "SMS",
     }));
