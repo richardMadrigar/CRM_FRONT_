@@ -23,6 +23,7 @@ export const UseGetByIdCampaign = () => {
           subject: data.subject,
           senderName: data.senderName,
           senderEmail: data.senderEmail,
+          type: data.type,
         });
       })
       .catch((error) =>
@@ -32,24 +33,6 @@ export const UseGetByIdCampaign = () => {
 
   return { handleGetById };
 };
-
-interface Message {
-  flow: number;
-  content: string;
-}
-
-interface Flow {
-  id: string;
-  title: string;
-  dateFull: string;
-  date: string;
-  hour: string;
-  message: Message[];
-  campaignId: string;
-  status: "COMPLETED" | "IN_PROGRESS" | "PENDING" | "DISABLED";
-  updatedAt: string;
-  createdAt: string;
-}
 
 interface ICampaign {
   id: string;
@@ -68,6 +51,7 @@ interface ICampaign {
   createdAt: string;
   status: "IN_PROGRESS" | "WAITING_NEXT" | "COMPLETED" | "PAUSED";
   CampaignFlowsSend: CampaignFlowsSend[];
+  type: "EMAIL" | "SMS";
 }
 
 export type CampaignFlowsSendEvent = "request" | "delivered" | "unique_opened" | "opened" | "clicked";

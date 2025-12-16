@@ -36,6 +36,10 @@ export const FormCampaign = () => {
     newValue: string,
   ) => {
     setMainTab(newValue);
+    setValuesInputsCampaign((eventPrev: ICreateCampaign) => ({
+      ...eventPrev,
+      type: newValue === "email" ? "EMAIL" : "SMS",
+    }));
   };
 
   return (

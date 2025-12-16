@@ -14,6 +14,12 @@ export const THeadCampaign = () => {
       minWidth: "200px",
     },
     {
+      title: "Tipo",
+      align: "left",
+      width: "120px",
+      minWidth: "120px",
+    },
+    {
       title: "Configurações",
       align: "left",
       width: "200px",

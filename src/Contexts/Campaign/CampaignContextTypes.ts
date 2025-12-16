@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/suspicious/noExplicitAny: <explanation> */
 import type { SetStateAction as Action, Dispatch as DPatch } from "react";
 import type { IStatusLeads } from "src/shared/Hooks/Https/HttpGetLeadsAll";
 
@@ -233,6 +234,7 @@ type GroupLead = {
 };
 
 export interface ICreateCampaign {
+  type: "EMAIL" | "SMS";
   name: string;
   description: string;
 
@@ -266,6 +268,7 @@ export interface IListGroupLeads {
 
 export type IListCampaign = {
   id: string;
+  type: "EMAIL" | "SMS";
   name: string;
   description: string;
   idTenant: string;

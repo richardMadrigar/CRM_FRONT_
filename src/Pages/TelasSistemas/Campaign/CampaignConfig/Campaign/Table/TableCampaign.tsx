@@ -1,12 +1,24 @@
-import { Email as EmailIcon, People as PeopleIcon } from "@mui/icons-material";
-import { Box, Chip, Grid, IconButton, Stack, Tooltip, Typography } from "@mui/material";
+/** biome-ignore-all lint/suspicious/noExplicitAny: <falha positive> */
+import {
+  Email as EmailIcon,
+  People as PeopleIcon,
+  SmsOutlined as SmsOutlinedIcon,
+} from "@mui/icons-material";
+import {
+  Box,
+  Chip,
+  Grid,
+  IconButton,
+  Stack,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import moment from "moment";
 import { Children, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { useContextCampaign } from "src/Contexts/Campaign/ContextCampaign";
 import { useConfigPageContext } from "src/Contexts/configPagesContext/configPagesContext";
 import { useResetInputs } from "src/Contexts/hooks/useResetInputs";
-import { useLayoutMainContext } from "src/Contexts/MainLayoutContext";
 import {
   ModalDeleteCore,
   TableCore,
@@ -76,7 +88,7 @@ export const CompCardMetricsTableCampaign = ({
           <InfoOutlinedIcon fontSize="small" />
         </IconButton>
       </Tooltip>
-    </Grid >
+    </Grid>
   );
 };
 
@@ -203,7 +215,7 @@ export const TableCampaign = () => {
           const totalRequest = item.totalSent || 0;
           const totalDelivered = item.statusCount.DELIVERY || 0;
           const totalOpened = item.statusCount.OPEN || 0;
-          const totalClicks = item.statusCount.CLICK || 0;
+          // const totalClicks = item.statusCount.CLICK || 0;
           const totalUniqueOpened = item.statusCount.CLICK || 0;
           // const totalUniqueProxyOpen = item.statusCount.unique_proxy_open;
           const totalHardBounce = item.statusCount.BOUNCE || 0;
@@ -214,12 +226,13 @@ export const TableCampaign = () => {
           // const totalUnsubscribed = item.statusCount.unsubscribed;
           const totalSpam = item.statusCount.SPAM_COMPLAINT || 0;
 
-          const percentDeliverabilityRate = item.metrics.deliverabilityRate || 0 // Capacidade de entrega
-          const percentOpenRate = item.metrics.openRate || 0  // taxa de abertura
-          const percentClickRate = item.metrics.clickRate || 0 // taxa de cliques
+          const percentDeliverabilityRate =
+            item.metrics.deliverabilityRate || 0; // Capacidade de entrega
+          const percentOpenRate = item.metrics.openRate || 0; // taxa de abertura
+          // const percentClickRate = item.metrics.clickRate || 0; // taxa de cliques
           // const percentUnsubscribeRate = item.metrics.unsubscribeRate // taxa de cancelamento
-          const percentSpamReportRate = item.metrics.spamReportRate || 0 // taxa de spam
-          const percentHardBounceRate = item.metrics.SPAM_COMPLAINT || 0 // taxa de hard bounce
+          const percentSpamReportRate = item.metrics.spamReportRate || 0; // taxa de spam
+          const percentHardBounceRate = item.metrics.SPAM_COMPLAINT || 0; // taxa de hard bounce
           // const percentSoftBounceRate = item.metrics.softBounceRate // taxa de soft bounce
           // const percentBlockedRate = item.metrics.blockedRate // taxa de bloqueio
           // const percentDeferredRate = item.metrics.deferredRate // taxa de deferral
@@ -274,6 +287,22 @@ export const TableCampaign = () => {
 
               <TdCore
                 values={
+                  <Box display="flex" alignItems="center" gap={1}>
+                    {item.type === "EMAIL" ? (
+                      <>
+                        <EmailIcon fontSize="small" color="action" style={{ verticalAlign: "middle", marginRight: 4 }} /> <Typography variant="body2" color="text.secondary">Email</Typography>
+                      </>
+                    ) : (
+                      <>
+                        <SmsOutlinedIcon fontSize="small" color="action" style={{ verticalAlign: "middle", marginRight: 4 }} /> <Typography variant="body2" color="text.secondary">SMS</Typography>
+                      </>
+                    )}
+                  </Box>
+                }
+              />
+
+              <TdCore
+                values={
                   <Stack spacing={0.5}>
                     <Box display="flex" alignItems="center" gap={1}>
                       <PeopleIcon fontSize="small" color="action" />
@@ -294,7 +323,7 @@ export const TableCampaign = () => {
 
               <TdCore
                 values={item.subject}
-                subTitle={`${item.senderName} <${item.senderEmail}>`}
+                subTitle={item.type === "EMAIL" ? `${item.senderName} <${item.senderEmail}>` : item.senderName}
                 textAlign="left"
               />
 
