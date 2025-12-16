@@ -24,7 +24,7 @@ import { ModalEmailTemplates } from "../Form";
 import { useHttpTableEmailTemplates } from "./Hooks/useHttpTableEmailTemplates";
 import { THeadEmailTemplates } from "./THead";
 
-export const TableEmailTemplates = () => {
+export const TableTemplates = () => {
   const { handleGet } = useHttpTableEmailTemplates();
 
   const { listEmailTemplates, setValuesInputsEmailTemplate } =

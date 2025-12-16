@@ -24,7 +24,6 @@ import {
 import { RotatingCachedIcon } from "src/Pages/components/Icons/RotatingCachedIcon";
 import { UseDelete } from "src/Pages/components/ModalDeleteCore/Hooks/UseDelete";
 import { ActionPopoverTable } from "src/Pages/components/table/ActionPopover/ActionPopover";
-import { api } from "src/shared/setup/API/api";
 import { FormatDateBR } from "src/shared/Utils/FormatDateBR";
 import { ModalCampaign } from "../Form";
 import { UseGetByIdCampaign } from "./Hooks/UseGetByIdContratos";
@@ -86,7 +85,6 @@ export const TableCampaign = () => {
   const { handleGet } = useHttpTableCampaign();
   const { listCampaign } = useContextCampaign();
   const { handleGetById } = UseGetByIdCampaign();
-  const { handleGetAlert } = useLayoutMainContext();
 
   const navigate = useNavigate();
 
@@ -127,23 +125,6 @@ export const TableCampaign = () => {
     setOpen: setOpenModalDelete,
   } = UseDelete({ url: "/campaign" });
 
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    id: string,
-  ) => {
-    api
-      .patch(`/campaign/change-status/${id}`, {
-        status: event.target.checked,
-      })
-      .then((res) => {
-        handleGetAlert({ message: res.data.message });
-        setAttTable(!attTable);
-      })
-      .catch((error) =>
-        handleGetAlert({ message: error.response.data.message }),
-      );
-  };
-
   return (
     <TableCore
       Modals={
@@ -166,10 +147,6 @@ export const TableCampaign = () => {
         </>
       }
       THead={<THeadCampaign />}
-      // modalInfo={{
-      //   children: <InfoModalCampaign />,
-      //   title: "Tutorial: Campanhas",
-      // }}
       qtdList={listCampaign.length}
       setNameSearch={setNameSearch}
       cardAdd={{

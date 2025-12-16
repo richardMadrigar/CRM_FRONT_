@@ -9,10 +9,10 @@ import { CampaignInternal } from "src/Pages/TelasSistemas/Campaign/CampaignInter
 import { PageCampaign } from "src/Pages/TelasSistemas/Campaign/Index";
 import { ContactInternal } from "src/Pages/TelasSistemas/Contacts/ContactInternal/ContactInternal";
 import { ContactsPage } from "src/Pages/TelasSistemas/Contacts/ContactsPage";
-import { PageEmailTemplates } from "src/Pages/TelasSistemas/EmailTemplates";
 import { PageGroupLeads } from "src/Pages/TelasSistemas/GroupLeads";
 import { HomePage } from "src/Pages/TelasSistemas/Home/HomePage";
 import { ProfilePage } from "src/Pages/TelasSistemas/Profile/Index";
+import { PageTemplates } from "src/Pages/TelasSistemas/Templates";
 import { WhatsappConfigPage } from "src/Pages/TelasSistemas/WhatsappPage/Index";
 import { UrlConfig } from "src/shared/Utils/paths";
 import type { IViews } from "../types/ProdutoresContext.Types";
@@ -66,7 +66,7 @@ export const ViewsContext: FC<{ children: ReactNode }> = ({ children }) => {
       isView: true,
     },
     {
-      element: <PageEmailTemplates />,
+      element: <PageTemplates />,
       route: UrlConfig.emailTemplates,
       isView: true,
     },

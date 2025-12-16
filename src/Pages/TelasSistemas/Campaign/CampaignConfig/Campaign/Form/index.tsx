@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import type React from "react";
+import { useEffect } from "react";
 import { useResetInputs } from "src/Contexts";
 import { ModalCore } from "src/Pages/components";
-
+import { FormCampaign } from "./DadosCampaign";
 import { UseFormCampaign } from "./Hooks/UseFormCampaign";
-import { FormContrato } from "./DadosCampaign";
 
 interface IModalCampaign {
   openModal: boolean;
@@ -28,11 +28,11 @@ export const ModalCampaign = ({ openModal, setOpenModal }: IModalCampaign) => {
       loadingSubmit={loadingSubmit}
       sxStyle={{ width: { xl: "800px", md: "700px", xs: "90%" } }}
       title="Campanha"
-      subTitle="Configure os detalhes da sua campanha de e-mail"
+      subTitle="Configure os detalhes da sua campanha"
       titleSubmit="Salvar"
       onChange={handleSubmit}
     >
-      <FormContrato />
+      <FormCampaign />
     </ModalCore>
   );
 };
