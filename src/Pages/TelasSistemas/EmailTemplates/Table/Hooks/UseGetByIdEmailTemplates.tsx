@@ -16,6 +16,7 @@ export const UseGetByIdEmailTemplates = () => {
           htmlContent: data.htmlContent,
           description: data.description,
           message: data.message,
+          type: data.type,
         });
       })
       .catch((error) =>

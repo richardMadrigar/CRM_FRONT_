@@ -13,6 +13,7 @@ export interface ICreateEmailTemplate {
   message: string;
   htmlContent: string;
   description: string;
+  type: "EMAIL" | "SMS";
 }
 
 export interface IListEmailTemplate {
@@ -23,4 +24,5 @@ export interface IListEmailTemplate {
   description: string;
   createdAt: string;
   updatedAt: string;
+  type: "EMAIL" | "SMS";
 }

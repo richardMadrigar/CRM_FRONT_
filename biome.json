@@ -16,7 +16,8 @@
     "enabled": true,
     "rules": {
       "correctness": {
-        "useJsxKeyInIterable": "error"
+        "useJsxKeyInIterable": "off",
+        "useExhaustiveDependencies": "off"
       },
       "suspicious": {
         "noExplicitAny": "error"

@@ -1,3 +1,5 @@
+import { SmsOutlined as SmsOutlinedIcon } from "@mui/icons-material";
+import { Box, Typography } from "@mui/material";
 import { Children, useEffect, useState } from "react";
 import { useConfigPageContext } from "src/Contexts/configPagesContext/configPagesContext";
 import { useContextEmailTemplates } from "src/Contexts/EmailTemplates/ContextEmailTemplates";
@@ -9,13 +11,12 @@ import {
   TdCore,
 } from "src/Pages/components";
 import { ButtonCore } from "src/Pages/components/ButtonCore/ButtonCore";
-import { CardCore } from "src/Pages/components/CardCore/CardCore";
 import {
   AddIcon,
   DeleteForeverIcon,
   EditIcon,
+  EmailIcon,
 } from "src/Pages/components/Icons/Icons";
-import { ModalCoreBase } from "src/Pages/components/ModalCoreBase/ModalCoreBase";
 import { UseDelete } from "src/Pages/components/ModalDeleteCore/Hooks/UseDelete";
 import { ActionPopoverTable } from "src/Pages/components/table/ActionPopover/ActionPopover";
 import { FormatDateBR } from "src/shared/Utils/FormatDateBR";
@@ -30,9 +31,6 @@ export const TableEmailTemplates = () => {
     useContextEmailTemplates();
 
   const [openModalEmailTemplates, setOpenModalEmailTemplates] = useState(false);
-  const [openModalEmailTemplatesView, setOpenModalEmailTemplatesView] =
-    useState(false);
-  const [htmlContent, setHtmlContent] = useState("");
 
   const {
     setNameSearch,
@@ -63,7 +61,7 @@ export const TableEmailTemplates = () => {
 
   return (
     <TableCore
-
+      THead={<THeadEmailTemplates />}
       setNameSearch={setNameSearch}
       qtdList={listEmailTemplates.length}
       heightTable="420px"
@@ -83,24 +81,22 @@ export const TableEmailTemplates = () => {
             yes="Excluir"
             no="Cancelar"
           />
-          <ModalCoreBase
+          {/* <ModalCoreBase
             open={openModalEmailTemplatesView}
             onClose={() => setOpenModalEmailTemplatesView(false)}
           >
-            <CardCore
-              sxStyle={{ maxHeight: "600px", overflow: "auto", p: 5 }}
-            >
+            <CardCore sxStyle={{ maxHeight: "600px", overflow: "auto", p: 5 }}>
               <div
+                // biome-ignore lint/security/noDangerouslySetInnerHtml: "allow"
                 dangerouslySetInnerHTML={{ __html: htmlContent }}
                 style={{ margin: 12 }}
               />
             </CardCore>
-          </ModalCoreBase>
+          </ModalCoreBase> */}
         </>
       }
-      THead={<THeadEmailTemplates />}
       cardAdd={{
-        title: "Templates de Email",
+        title: "Templates",
         buttons: [
           <ButtonCore
             key="add-template"
@@ -140,30 +136,33 @@ export const TableEmailTemplates = () => {
                 }
               />
 
+              <TdCore textAlign="left" values={item.name} />
+
               <TdCore
                 textAlign="left"
                 values={
-                  <ButtonCore
-                    variant="outlined"
-                    onClick={() => [
-                      setHtmlContent(item.htmlContent),
-                      setOpenModalEmailTemplatesView(true),
-                    ]}
-                    // onMouseLeave={() => {
-                    //   setOpenModalEmailTemplatesView(false),
-                    //     setHtmlContent("")
-                    // }}
-                    title="Visualizar Template"
-                  >
-                    Ver
-                  </ButtonCore>
+                  item.type === "EMAIL" ? (
+                    <Box display="flex" alignItems="center" gap={1}>
+                      <EmailIcon
+                        fontSize="small"
+                        style={{ verticalAlign: "middle", marginRight: 4 }}
+                      />
+                      <Typography variant="body2" color="text.primary">
+                        Email
+                      </Typography>
+                    </Box>
+                  ) : (
+                    <Box display="flex" alignItems="center" gap={1} >
+                      <SmsOutlinedIcon
+                        fontSize="small"
+                        style={{ verticalAlign: "middle", marginRight: 4 }}
+                      />
+                      <Typography variant="body2" color="text.primary">SMS</Typography>
+                    </Box>
+                  )
                 }
               />
-              <TdCore textAlign="left" values={item.name} />
-              <TdCore
-                textAlign="left"
-                values={FormatDateBR(item.createdAt)}
-              />
+              <TdCore textAlign="right" values={FormatDateBR(item.createdAt)} />
             </TableRowCore>
           );
         }),

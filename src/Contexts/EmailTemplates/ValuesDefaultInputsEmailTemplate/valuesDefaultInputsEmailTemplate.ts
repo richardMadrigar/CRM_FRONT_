@@ -5,4 +5,5 @@ export const valuesDefaultInputsEmailTemplate: ICreateEmailTemplate = {
   htmlContent: "",
   description: "",
   message: "",
+  type: "EMAIL",
 };

@@ -19,16 +19,19 @@ export const UseFormEmailTemplates = ({
 
   const AllDatas = {
     name: valuesInputsEmailTemplate.name,
-    htmlContent: valuesInputsEmailTemplate.htmlContent,
+    htmlContent: valuesInputsEmailTemplate.htmlContent || undefined,
     description: valuesInputsEmailTemplate.description,
-    message: valuesInputsEmailTemplate.message,
+    message: valuesInputsEmailTemplate.message || undefined,
+    type: valuesInputsEmailTemplate.type,
   };
 
   const handleCreate = async () => {
+    console.log(AllDatas);
     if (!AllDatas.name) return handleGetAlert({ message: `Digite um nome !` });
 
-    if (!AllDatas.htmlContent || !AllDatas.message)
-      return handleGetAlert({ message: `Digite o HTML do template ou mensagem de SMS !` });
+    // if (!AllDatas.htmlContent || !AllDatas.message) {
+    //   return handleGetAlert({ message: `Digite o HTML do template ou mensagem de SMS !` });
+    // }
 
     setLoading(true);
 
@@ -48,9 +51,6 @@ export const UseFormEmailTemplates = ({
   const handleEdit = () => {
     if (!AllDatas.name)
       return handleGetAlert({ message: `Digite um título !` });
-
-    if (!AllDatas.htmlContent || !AllDatas.message)
-      return handleGetAlert({ message: `Digite o HTML do template ou mensagem de SMS !` });
 
     setLoading(true);
 
